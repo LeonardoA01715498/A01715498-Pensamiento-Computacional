@@ -6,7 +6,15 @@ Dependencias:
 Flask:  pip install Flask     https://flask.palletsprojects.com/en/stable/installation/#python-version
 
 Run:
+Crear enviroment:
+  > mkdir myproject
+  > cd myproject
+  > py -3 -m venv .venv
+
+Activar enviroment:
 .\.venv\Scripts\activate
+
+Correr programa:
 flask run
 
 Esto mostrara un link en la terminal con el puerto 500 en local host
