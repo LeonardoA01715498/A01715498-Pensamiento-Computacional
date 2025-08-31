@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calendar Table</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #333;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Select Month and Year:</h2>
+  <input type="month" id="monthPicker">
+  <button onclick="generateCalendar()">Generate Calendar</button>
+
+  <table id="calendar">
+    <thead>
+      <tr>
+        <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th>
+        <th>Thu</th><th>Fri</th><th>Sat</th>
+      </tr>
+    </thead>
+    <tbody id="calendarBody">
+      <!-- JS will fill this -->
+    </tbody>
+  </table>
+
+  <script>
+    function generateCalendar() {
+      const calendarBody = document.getElementById("calendarBody");
+      calendarBody.innerHTML = ""; // Clear previous calendar
+
+      const monthInput = document.getElementById("monthPicker").value;
+      if (!monthInput) return;
+
+      const [year, month] = monthInput.split("-");
+      const firstDay = new Date(year, month - 1, 1).getDay();
+      const daysInMonth = new Date(year, month, 0).getDate();
+
+      let day = 1;
+      for (let i = 0; i < 6; i++) { // Max 6 weeks
+        const row = document.createElement("tr");
+
+        for (let j = 0; j < 7; j++) {
+          const cell = document.createElement("td");
+
+          if (i === 0 && j < firstDay) {
+            cell.textContent = "";
+          } else if (day <= daysInMonth) {
+            cell.textContent = day;
+            cell.id = `day-${day}`;
+            day++;
+          } else {
+            cell.textContent = "";
+          }
+
+          row.appendChild(cell);
+        }
+
+        calendarBody.appendChild(row);
+        if (day > daysInMonth) break; // Stop if finished
+      }
+    }
+  </script>
+
+</body>
+</html>
+
+                <tr>
+                    <form action="/month" method="POST">
+                        <td>
+                            <button name="month" value="Enero">1</button>
+                            <input type="hidden" name="day" value="1">
+                            <input type="hidden" name="year" value="2025">
+                        </td>
+                    </form>
+                </tr>
