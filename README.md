@@ -18,5 +18,6 @@ Esto mostrara un link en la terminal con el puerto 500 en local host
 
 Al abrir el link te llevara a una pagina donde podras seleccionar una hora y un evento el cual tendra un precio asignado. Las operaciones se hacen en el documento app.py en la funcion payment donde al agendar un evento los precios se mostraran en la terminal
 
+Esto esta hecho para Windows 11
 #ignore all the mess 😬#
 
