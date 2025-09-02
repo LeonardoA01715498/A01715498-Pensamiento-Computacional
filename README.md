@@ -7,12 +7,9 @@ Flask:  pip install Flask     https://flask.palletsprojects.com/en/stable/instal
 
 Run:
 Crear enviroment:
-  > mkdir myproject
-  > cd myproject
-  > py -3 -m venv .venv
-
-Activar enviroment:
-.\.venv\Scripts\activate
+  > cd agenda
+  > python3 -m venv .venv
+  > pip install Flask
 
 Correr programa:
 flask run
