@@ -6,6 +6,7 @@ Dependencias:
 Flask:  pip install Flask     https://flask.palletsprojects.com/en/stable/installation/#python-version
 
 Run:
+
 Crear enviroment:
 
    cd agenda
@@ -15,6 +16,7 @@ Crear enviroment:
    pip install Flask
 
 Correr programa:
+
 flask run
 
 Esto mostrara un link en la terminal con el puerto 500 en local host
