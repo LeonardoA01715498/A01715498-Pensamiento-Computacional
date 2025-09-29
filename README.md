@@ -14,6 +14,10 @@ Crear enviroment:
    
    pip install Flask
 
+Activar enviroment:
+
+.\.venv\Scripts\activate
+
 Correr programa:
 
 flask run
