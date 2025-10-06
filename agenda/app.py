@@ -13,13 +13,17 @@ def init_db():
         con.commit()
         cur.execute('CREATE TABLE IF NOT EXISTS sales (id INTEGER PRIMARY KEY, price REAL, evento TEXT)')
         con.commit()
-        cur.execute('CREATE TABLE IF NOT EXISTS pagos (id INTEGER PRIMARY KEY, persona REAL, pay TEXT)')
+        cur.execute('CREATE TABLE IF NOT EXISTS pagos (id INTEGER PRIMARY KEY, persona REAL, pay TEXT, id_empleado INTEGER, FOREIGN KEY (id_empleado) REFERENCES empleados(id))')
         con.commit()
         cur.execute('CREATE TABLE IF NOT EXISTS empleados (id INTEGER PRIMARY KEY, persona UNIQUE)')
         con.commit()
+        #pagos = cur.execute('SELECT COUNT(id) FROM pagos').fetchall()
+        #for x in range (pagos[0][0]):
+            #pago = cur.execute('SELECT * FROM pagos WHERE id = ?', (x, )).fetchall()
+            #print(pago)
 
 init_db()
-
+@app.route('/index', methods=['GET', 'POST'])
 def index():
         if request.method == 'POST':
             names = request.form.get('hora')
@@ -38,10 +42,11 @@ def index():
                     cur = con.cursor()
                     cur.execute('INSERT INTO agenda (hora, persona, evento, mes, dia) VALUES (?, ?, ?, ?, ?)', (names, persona, evento, month, day))
                     cur.execute('INSERT INTO sales (price, evento) VALUES (?, ?)', (sale, evento))
-                    cur.execute('INSERT INTO pagos (persona, pay) VALUES (?, ?)', (persona, pay))
+                    #cur.execute('INSERT INTO pagos (persona, pay) VALUES (?, ?)', (persona, pay))
                     con.commit()
                 return render_template('index.html', hour=date, month=month, day=day)
-        return render_template('index.html', hour=date)
+            return render_template('index.html', hour=date)
+
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/month', methods=['GET', 'POST'])
@@ -49,9 +54,9 @@ def index():
 def month():
     if request.method == 'POST':
         month_num = int(request.form.get('month'))
+        month = calendar.month_name[month_num]
         day = request.form.get('day')
         year = request.form.get('year')
-        month = calendar.month_name[month_num + 1]
         with sqlite3.connect('database.db') as con:
             cur = con.cursor()
             dates = cur.execute('SELECT * FROM agenda WHERE dia LIKE ?', ('%' + day + '%',))
@@ -81,15 +86,34 @@ def payment(evento):
     with sqlite3.connect('database.db') as con:
         cur = con.cursor()
         people = cur.execute('SELECT COUNT(persona) FROM empleados').fetchall()
+        id_pago = cur.execute('SELECT id FROM empleados').fetchall()
+        pay_ids = cur.execute('SELECT * FROM pagos').fetchall()
+        #print(id_pago)
+        #print(people)
+        #print(pay_ids)
+        #print(id_pago[0][0])
     price = prices(evento)
     sale = price
     pay = (sale/2) - (sale * 0.15)
-    while sale > 0:
-        for i in range (people[0][0]):
-            pay = pay / people[0][0]
-    #Assign to each employee
+    pay_id = pay / people[0][0]
+    num_people = int(people[0][0])
     print(f"Precio: {sale}")
-    print(f"Pago: {pay}")
+    print(f"Pago: {pay_id}")
+    i = 0
+    while (i < num_people):
+        with sqlite3.connect('database.db') as con:
+            cur = con.cursor()
+            cur.execute('INSERT INTO pagos (pay, id_empleado) VALUES (?, ?)', (pay_id, id_pago[i][0]))
+            con.commit()
+        pay -= pay_id
+        i+=1
+    print("Lista de pagos por id:")
+    with sqlite3.connect('database.db') as con:
+        cur = con.cursor()
+        pagos = cur.execute('SELECT COUNT(id) FROM pagos').fetchall()
+        for x in range (pagos[0][0]):
+            pago = cur.execute('SELECT * FROM pagos WHERE id = ?', (x, )).fetchall()
+            print(pago)
     return pay
 
 def prices(evento):
