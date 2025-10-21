@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/styles.css">
+        <title>Agenda</title>
+    </head>
+
+    <header>
+        <h1 id="fecha">{{ month }} {{ day }}</h1>
+    </header>
+
+    <body>   
+        <div class="container">
+            <div>
+            <table>
+                <tr>
+                    <th><button>persona 1</button></th>
+                </tr>            
+                {% for x in range(24) %}
+                <tr>
+                    <form action = "/index" method="POST">
+                        <td>
+                            <button type="button"  onclick="document.getElementsByClassName('persona1')[{{x}}].style.display = 'block'">{{x+1}}</button>
+                            <input type="hidden" name="person" value="persona1">
+                            <input type="hidden" name="month" value="{{ month }}">
+                            <input type="hidden" name="day" value=" {{ day }}">
+                            <div class="persona1" style="display:none;">
+                                <div class="display">
+                                    <labe for="evento">Evento</labe>
+                                    <select name="evento" placeholder="Selecciona un evento">
+                                        <option value="Reunion">Reunion</option>
+                                        <option value="Cita Medica">Cita Medica</option>
+                                        <option value="Cumpleanos">Cumpleanos</option>
+                                        <option value="Otro">Otro</option>
+                                    </select>
+                                    <button name="hora" value="{{x+1}}">Guardar</button>
+                                    <button type="button" onclick="document.getElementsByClassName('persona1')[{{x}}].style.display='none'">Cerrar</button>
+                                </div>
+                            </div>
+                        </td>
+                    </form>
+                </tr>
+                {% endfor %}
+            </table>
+            </div>
+            <div>
+                <table>
+                <tr>
+                    <th><button>persona 2</button></th>
+                </tr>            
+                {% for x in range(24) %}
+                <tr>
+                    <form action = "/index" method="POST">
+                        <td>
+                            <button type="button"  onclick="document.getElementsByClassName('persona2')[{{x}}].style.display = 'block'">{{x+1}}</button>
+                            <input type="hidden" name="person" value="persona2">
+                            <input type="hidden" name="month" value="{{ month }}">
+                            <input type="hidden" name="day" value="{{ day }}">
+                            <div class="persona2" style="display:none;">
+                                <div class="display">
+                                <labe for="evento">Evento</labe>
+                                    <select name="evento" placeholder="Selecciona un evento">
+                                        <option value="Reunion">Reunion</option>
+                                        <option value="Cita Medica">Cita Medica</option>
+                                        <option value="Cumpleanos">Cumpleanos</option>
+                                        <option value="Otro">Otro</option>
+                                    </select>
+                                <button name="hora" value="{{x+1}}">Guardar</button>
+                                <button type="button" onclick="document.getElementsByClassName('persona2')[{{x}}].style.display='none'">Cerrar</button>
+                                </div>
+                            </div>
+                        </td>
+                    </form>
+                </tr>
+                {% endfor %}
+                </table>
+            </div>
+            <div>
+                <table>
+                <tr>
+                    <th><button>persona 3</button></th>
+                </tr>            
+                {% for x in range(24) %}
+                <tr>
+                    <form action = "/index" method="POST">
+                        <td>
+                            <button type="button"  onclick="document.getElementsByClassName('persona3')[{{x}}].style.display = 'block'">{{x+1}}</button>
+                            <input type="hidden" name="person" value="persona3">
+                            <input type="hidden" name="month" value="{{ month }}">
+                            <input type="hidden" name="day" value="{{ day }}">
+                            <div class="persona3" style="display:none;">
+                                <div class="display">
+                                <labe for="evento">Evento</labe>
+                                    <select name="evento" placeholder="Selecciona un evento">
+                                        <option value="Reunion">Reunion</option>
+                                        <option value="Cita Medica">Cita Medica</option>
+                                        <option value="Cumpleanos">Cumpleanos</option>
+                                        <option value="Otro">Otro</option>
+                                    </select>
+                                <button name="hora" value="{{x+1}}">Guardar</button>
+                                <button type="button" onclick="document.getElementsByClassName('persona3')[{{x}}].style.display='none'">Cerrar</button>
+                                </div>
+                            </div>
+                        </td>
+                    </form>
+                </tr>
+                {% endfor %}
+                </table>
+            </div>
+            <div>
+                <table>
+                <tr>
+                    <th><button>persona 4</button></th>
+                </tr>            
+                {% for x in range(24) %}
+                <tr>
+                    <form action = "/index" method="POST">
+                        <td>
+                            <button type="button"  onclick="document.getElementsByClassName('persona4')[{{x}}].style.display = 'block'">{{x+1}}</button>
+                            <input type="hidden" name="person" value="persona4">
+                            <input type="hidden" name="month" value="{{ month }}">
+                            <input type="hidden" name="day" value="{{ day }}">
+                            <div class="persona4" style="display:none;">
+                                <div class="display">
+                                <labe for="evento">Evento</labe>
+                                    <select name="evento" placeholder="Selecciona un evento">
+                                        <option value="Reunion">Reunion</option>
+                                        <option value="Cita Medica">Cita Medica</option>
+                                        <option value="Cumpleanos">Cumpleanos</option>
+                                        <option value="Otro">Otro</option>
+                                    </select>
+                                <button name="hora" value="{{x+1}}">Guardar</button>
+                                <button type="button" onclick="document.getElementsByClassName('persona4')[{{x}}].style.display='none'">Cerrar</button>
+                                </div>
+                            </div>
+                        </td>
+                    </form>
+                </tr>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+        {% for date in hour %}
+            <ul>
+                <li>{{ date }}</li>
+            </ul>
+        {% endfor %}
+
+        {% if month %}
+        <h2>{{ month }} {{ year }} {{ day }}</h2>
+        {% endif %}
+    </body>
+</html>
