@@ -20,11 +20,11 @@
                 </tr>            
                 {% for x in range(24) %}
                 <tr>
-                    <form action = "/" method="POST">
+                    <form action = "/index" method="POST">
                         <td>
                             <button type="button"  onclick="document.getElementsByClassName('persona1')[{{x}}].style.display = 'block'">{{x+1}}</button>
                             <input type="hidden" name="person" value="persona1">
-                            <input type="hidden" name="month" value=" {{ month }}">
+                            <input type="hidden" name="month" value="{{ month }}">
                             <input type="hidden" name="day" value=" {{ day }}">
                             <div class="persona1" style="display:none;">
                                 <div class="display">
@@ -52,12 +52,12 @@
                 </tr>            
                 {% for x in range(24) %}
                 <tr>
-                    <form action = "/" method="POST">
+                    <form action = "/index" method="POST">
                         <td>
                             <button type="button"  onclick="document.getElementsByClassName('persona2')[{{x}}].style.display = 'block'">{{x+1}}</button>
                             <input type="hidden" name="person" value="persona2">
-                            <input type="hidden" name="month" value=" {{ month }}">
-                            <input type="hidden" name="day" value=" {{ day }}">
+                            <input type="hidden" name="month" value="{{ month }}">
+                            <input type="hidden" name="day" value="{{ day }}">
                             <div class="persona2" style="display:none;">
                                 <div class="display">
                                 <labe for="evento">Evento</labe>
@@ -84,12 +84,12 @@
                 </tr>            
                 {% for x in range(24) %}
                 <tr>
-                    <form action = "/" method="POST">
+                    <form action = "/index" method="POST">
                         <td>
                             <button type="button"  onclick="document.getElementsByClassName('persona3')[{{x}}].style.display = 'block'">{{x+1}}</button>
                             <input type="hidden" name="person" value="persona3">
-                            <input type="hidden" name="month" value=" {{ month }}">
-                            <input type="hidden" name="day" value=" {{ day }}">
+                            <input type="hidden" name="month" value="{{ month }}">
+                            <input type="hidden" name="day" value="{{ day }}">
                             <div class="persona3" style="display:none;">
                                 <div class="display">
                                 <labe for="evento">Evento</labe>
@@ -116,12 +116,12 @@
                 </tr>            
                 {% for x in range(24) %}
                 <tr>
-                    <form action = "/" method="POST">
+                    <form action = "/index" method="POST">
                         <td>
                             <button type="button"  onclick="document.getElementsByClassName('persona4')[{{x}}].style.display = 'block'">{{x+1}}</button>
                             <input type="hidden" name="person" value="persona4">
-                            <input type="hidden" name="month" value=" {{ month }}">
-                            <input type="hidden" name="day" value=" {{ day }}">
+                            <input type="hidden" name="month" value="{{ month }}">
+                            <input type="hidden" name="day" value="{{ day }}">
                             <div class="persona4" style="display:none;">
                                 <div class="display">
                                 <labe for="evento">Evento</labe>
