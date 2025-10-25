@@ -24,6 +24,7 @@ div {
     width: 100%;
     border: 2px solid #000;
     text-align: center;
+    display: block;
 }
 
 header {
@@ -41,4 +42,28 @@ td{
 .month-table {
     width: 100%;
     border-collapse: collapse;
+}
+
+/* Estilo básico para ocultar el mensaje */
+.hidden {
+    display: none; /* Esta es la clave para ocultarlo */
+}
+
+/* Estilo para el mensaje de éxito */
+#mensajeExito {
+    padding: 20px;
+    background-color: #d4edda; /* Fondo verde claro */
+    color: #155724; /* Texto verde oscuro */
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.persona-oculta {
+    display: none !important;
 }
