@@ -1,0 +1,69 @@
+
+button{
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+}
+div {
+    display:inline-block;
+    gap: 20px;
+}
+.display {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* center it */
+    background-color: white;
+    padding: 20px;
+    border: 2px solid #000;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+.container {
+    width: 100%;
+    border: 2px solid #000;
+    text-align: center;
+    display: block;
+}
+
+header {
+    text-align: center;
+}
+
+table{
+    width: 200px;
+}
+
+td{
+    height: 50px;
+    border: #000 1px solid;
+}
+.month-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Estilo básico para ocultar el mensaje */
+.hidden {
+    display: none; /* Esta es la clave para ocultarlo */
+}
+
+/* Estilo para el mensaje de éxito */
+#mensajeExito {
+    padding: 20px;
+    background-color: #d4edda; /* Fondo verde claro */
+    color: #155724; /* Texto verde oscuro */
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.persona-oculta {
+    display: none !important;
+}
