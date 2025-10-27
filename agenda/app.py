@@ -17,21 +17,12 @@ def init_db():
         con.commit()
         cur.execute('CREATE TABLE IF NOT EXISTS empleados (id INTEGER PRIMARY KEY, persona UNIQUE)')
         con.commit()
-        #cur.execute('DELETE FROM pagos WHERE id > 0')
-        # pagos = cur.execute('SELECT COUNT(id) FROM pagos').fetchall()
-        # print(pagos)
-        # for x in range (pagos[0][0]):
-        #     pago = cur.execute('SELECT * FROM pagos WHERE id = ?', (x, )).fetchall()
-        #     print(pago)
+
 
 init_db()
 @app.route('/index', methods=['GET', 'POST'])
-# app.py
-
-# ... (resto del código)
 
 @app.route('/index', methods=['GET', 'POST'])
-# app.py
 
 @app.route('/index', methods=['GET', 'POST'])
 def index():
@@ -46,35 +37,26 @@ def index():
         month = request.form.get('month')
         day = request.form.get('day')
 
-        # Comprueba si alguna variable es None (valor faltante)
         if not (names and persona and evento and month and day):
-            print("❌ ERROR 400: Uno o más campos faltan o son None.")
+            print("ERROR 400: Uno o más campos faltan o son None.")
             return {'error': 'Faltan datos requeridos.'}, 400
-
-
         try:
-            # 1. Ejecutar las funciones que modifican la DB
+
             sale = prices(evento)
             pay = payment(evento) 
             
-            # 2. Guardar en la base de datos (agenda y sales)
             with sqlite3.connect('database.db') as con:
                 cur = con.cursor()
                 cur.execute('INSERT INTO agenda (hora, persona, evento, mes, dia) VALUES (?, ?, ?, ?, ?)', (names, persona, evento, month, day))
                 cur.execute('INSERT INTO sales (price, evento) VALUES (?, ?)', (sale, evento))
                 con.commit()
-            
-            # 3. Respuesta de éxito para el AJAX de JavaScript
-            # El código 204 (No Content) es ideal para indicar éxito sin enviar datos de vuelta.
             return '', 204 
 
         except Exception as e:
-            # Capturar errores del servidor (DB, lógica)
+
             print(f"Error al procesar la petición POST: {e}")
             return {'error': f'Error interno del servidor: {e}'}, 500
 
-    # Lógica para la petición GET (Carga inicial de la página)
-    # ... (Tu código GET original)
     month_name = request.args.get('month')
     day = request.args.get('day')
     date = []
@@ -128,10 +110,7 @@ def payment(evento):
         people = cur.execute('SELECT COUNT(persona) FROM empleados').fetchall()
         id_pago = cur.execute('SELECT id FROM empleados').fetchall()
         pay_ids = cur.execute('SELECT * FROM pagos').fetchall()
-        #print(id_pago)
-        #print(people)
-        #print(pay_ids)
-        #print(id_pago[0][0])
+
     price = prices(evento)
     sale = price
     pay = (sale/2) - (sale * 0.15)
